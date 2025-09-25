@@ -10,9 +10,9 @@ Mix.install([
   {:sweet_xml, "~> 0.7"}
 ])
 
-# Load the library modules
-Code.require_file("lib/fhir_elixir.ex")
+# Load the library modules in correct order
 Code.require_file("lib/fhir_elixir/resource.ex")
+Code.require_file("lib/fhir_elixir.ex")
 
 # Read the patient example XML file
 xml = File.read!("patient-example.xml")

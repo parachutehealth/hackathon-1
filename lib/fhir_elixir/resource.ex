@@ -14,7 +14,7 @@ defmodule FhirElixir.Resource do
       xml_output = patient.to_xml()
 
   """
-  def to_xml(%__MODULE__{raw_xml: raw_xml, parsed_data: parsed_data, resource_type: resource_type}) do
+  def to_xml(%__MODULE__{raw_xml: _raw_xml, parsed_data: parsed_data, resource_type: resource_type}) do
     generate_xml(resource_type, parsed_data)
   end
 
@@ -195,8 +195,9 @@ defmodule FhirElixir.Resource do
 
   defp generate_value(nil), do: ""
   defp generate_value(value) when is_map(value) do
-    case Map.keys(value) do
-      keys when "value" in keys and "unit" in keys ->
+    keys = Map.keys(value)
+    cond do
+      "value" in keys and "unit" in keys ->
         # Quantity value
         value_attr = if value.value != "", do: " value=\"#{value.value}\"", else: ""
         unit_attr = if value.unit != "", do: " unit=\"#{value.unit}\"", else: ""
@@ -205,11 +206,11 @@ defmodule FhirElixir.Resource do
 
         "  <valueQuantity#{value_attr}#{unit_attr}#{system_attr}#{code_attr}/>"
 
-      ["value"] ->
+      keys == ["value"] ->
         # String value
         "  <valueString value=\"#{value.value}\"/>"
 
-      _ ->
+      true ->
         ""
     end
   end
