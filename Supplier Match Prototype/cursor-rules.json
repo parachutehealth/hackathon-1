@@ -1,0 +1,79 @@
+{
+    "rules": [
+      {
+        "description": "Prefer readable, descriptive variable and function names.",
+        "pattern": ".*",
+        "enforcement": "always",
+        "examples": {
+          "bad": "function x() { let a = 5; }",
+          "good": "function movePlayer() { let jumpHeight = 5; }"
+        }
+      },
+      {
+        "description": "Use consistent indentation (2 spaces for JS, HTML, CSS).",
+        "pattern": "\\.(js|html|css)$",
+        "enforcement": "always",
+        "examples": {
+          "bad": "function jump() {\n    console.log('up');\n}",
+          "good": "function jump() {\n  console.log('up');\n}"
+        }
+      },
+      {
+        "description": "Use `const` and `let` instead of `var`.",
+        "pattern": "\\.js$",
+        "enforcement": "always",
+        "examples": {
+          "bad": "var speed = 10;",
+          "good": "const speed = 10;"
+        }
+      },
+      {
+        "description": "Add comments for every function and complex block.",
+        "pattern": "\\.js$",
+        "enforcement": "suggest",
+        "examples": {
+          "bad": "function update(dt) { x += dt * vx; }",
+          "good": "// Update the player’s position based on time elapsed\nfunction update(dt) { x += dt * vx; }"
+        }
+      },
+      {
+        "description": "Group related code into modules or files (e.g., `player.js`, `level1.js`).",
+        "pattern": "\\.js$",
+        "enforcement": "suggest"
+      },
+      {
+        "description": "Avoid deeply nested callbacks; prefer named functions or async/await.",
+        "pattern": "\\.js$",
+        "enforcement": "warn"
+      },
+      {
+        "description": "Use CSS classes, not inline styles.",
+        "pattern": "\\.(html|css)$",
+        "enforcement": "always",
+        "examples": {
+          "bad": "<div style=\"color: red\">Oops</div>",
+          "good": "<div class=\"error\">Oops</div> /* in CSS: .error { color: red; } */"
+        }
+      },
+      {
+        "description": "Keep functions short: ideally under 25 lines.",
+        "pattern": "\\.js$",
+        "enforcement": "warn"
+      },
+      {
+        "description": "Avoid hardcoding magic numbers. Declare constants instead.",
+        "pattern": "\\.js$",
+        "enforcement": "always",
+        "examples": {
+          "bad": "if (player.y > 540) { ... }",
+          "good": "const GROUND_LEVEL = 540;\nif (player.y > GROUND_LEVEL) { ... }"
+        }
+      },
+      {
+        "description": "Use consistent naming for DOM elements (`btnJump`, `canvasMain`, etc).",
+        "pattern": "\\.js$",
+        "enforcement": "suggest"
+      }
+    ]
+  }
+  
